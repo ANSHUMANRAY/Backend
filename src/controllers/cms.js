@@ -21,4 +21,14 @@ const updateContentType = async (req, res) => {
   }
 };
 
-module.exports = { createContentType, updateContentType };
+const createCollection = async (req, res) => {
+  try {
+    const { contentTypeId, entry } = req.body;
+    const collection = await cmsService.createCollection(contentTypeId, entry);
+    res.status(201).json(collection);
+  } catch (error) {
+    res.status(401).json({ message: error.message });
+  }
+};
+
+module.exports = { createContentType, updateContentType, createCollection };

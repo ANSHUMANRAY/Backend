@@ -1,6 +1,6 @@
 const db = require('../../db/models');
 
-const { ContentType } = db;
+const { ContentType, Content } = db;
 
 const createContentType = async (name, fields) => {
   const contentType = await ContentType.create({ name, fields });
@@ -12,4 +12,9 @@ const updateContentType = async (id, name, fields) => {
   return contentType;
 };
 
-module.exports = { createContentType, updateContentType };
+const createCollection = async (contentTypeId, entry) => {
+  const collection = await Content.create({ contentTypeId, entry });
+  return collection;
+};
+
+module.exports = { createContentType, updateContentType, createCollection };
