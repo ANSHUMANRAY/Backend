@@ -17,4 +17,11 @@ const createCollection = async (contentTypeId, entry) => {
   return collection;
 };
 
-module.exports = { createContentType, updateContentType, createCollection };
+const getAllContentTypes = async () => {
+  const contentTypes = await ContentType.findAll();
+  return contentTypes;
+};
+
+module.exports = {
+  createContentType, updateContentType, createCollection, getAllContentTypes,
+};

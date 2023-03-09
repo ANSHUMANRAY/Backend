@@ -31,4 +31,15 @@ const createCollection = async (req, res) => {
   }
 };
 
-module.exports = { createContentType, updateContentType, createCollection };
+const getAllContentTypes = async (_req, res) => {
+  try {
+    const contentTypes = await cmsService.getAllContentTypes();
+    res.status(200).json(contentTypes);
+  } catch (error) {
+    res.status(401).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  createContentType, updateContentType, createCollection, getAllContentTypes,
+};
