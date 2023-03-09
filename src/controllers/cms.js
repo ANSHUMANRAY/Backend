@@ -10,4 +10,15 @@ const createContentType = async (req, res) => {
   }
 };
 
-module.exports = { createContentType };
+const updateContentType = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, fields } = req.body;
+    const contentType = await cmsService.updateContentType(id, name, fields);
+    res.status(200).json(contentType);
+  } catch (error) {
+    res.status(401).json({ message: error.message });
+  }
+};
+
+module.exports = { createContentType, updateContentType };

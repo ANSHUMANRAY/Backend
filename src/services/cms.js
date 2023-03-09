@@ -7,4 +7,9 @@ const createContentType = async (name, fields) => {
   return contentType;
 };
 
-module.exports = { createContentType };
+const updateContentType = async (id, name, fields) => {
+  const contentType = await ContentType.update({ name, fields }, { where: { id } });
+  return contentType;
+};
+
+module.exports = { createContentType, updateContentType };
