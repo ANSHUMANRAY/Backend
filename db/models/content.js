@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.ContentType, { foreignKey: 'ContentTypeId' });
+      this.belongsTo(models.ContentType, { foreignKey: 'contentTypeId' });
     }
   }
   Content.init({
-    ContentTypeId: DataTypes.INTEGER,
+    contentTypeId: DataTypes.INTEGER,
     entry: DataTypes.JSONB,
   }, {
     sequelize,
