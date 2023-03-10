@@ -40,6 +40,67 @@ const getAllContentTypes = async (_req, res) => {
   }
 };
 
+const getCollectionById = async (req, res) => {
+  try {
+    const { contentTypeId } = req.params;
+    const collection = await cmsService.getCollectionById(contentTypeId);
+    res.status(200).json(collection);
+  } catch (error) {
+    res.status(401).json({ message: error.message });
+  }
+};
+
+const deleteField = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
+    const contentType = await cmsService.deleteField(id, name);
+    res.status(200).json(contentType);
+  } catch (error) {
+    res.status(401).json({ message: error.message });
+  }
+};
+
+const updateCollection = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { entry } = req.body;
+    const collection = await cmsService.updateCollection(id, entry);
+    res.status(200).json(collection);
+  } catch (error) {
+    res.status(401).json({ message: error.message });
+  }
+};
+
+const deleteCollection = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await cmsService.deleteCollection(id);
+    res.status(200).json({ message: 'Collection deleted successfully' });
+  } catch (error) {
+    res.status(401).json({ message: error.message });
+  }
+};
+
+const updateField = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { oldName, newName } = req.body;
+    const contentType = await cmsService.updateField(id, oldName, newName);
+    res.status(200).json(contentType);
+  } catch (error) {
+    res.status(401).json({ message: error.message });
+  }
+};
+
 module.exports = {
-  createContentType, updateContentType, createCollection, getAllContentTypes,
+  createContentType,
+  updateContentType,
+  createCollection,
+  getAllContentTypes,
+  getCollectionById,
+  deleteField,
+  updateCollection,
+  deleteCollection,
+  updateField,
 };
