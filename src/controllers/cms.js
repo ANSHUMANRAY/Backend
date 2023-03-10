@@ -6,7 +6,7 @@ const createContentType = async (req, res) => {
     const contentType = await cmsService.createContentType(name, fields);
     res.status(201).json(contentType);
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -17,7 +17,7 @@ const updateContentType = async (req, res) => {
     const contentType = await cmsService.updateContentType(id, name, fields);
     res.status(200).json(contentType);
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -27,7 +27,7 @@ const createCollection = async (req, res) => {
     const collection = await cmsService.createCollection(contentTypeId, entry);
     res.status(201).json(collection);
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -36,7 +36,7 @@ const getAllContentTypes = async (_req, res) => {
     const contentTypes = await cmsService.getAllContentTypes();
     res.status(200).json(contentTypes);
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -46,7 +46,7 @@ const getCollectionById = async (req, res) => {
     const collection = await cmsService.getCollectionById(contentTypeId);
     res.status(200).json(collection);
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -57,7 +57,7 @@ const deleteField = async (req, res) => {
     const contentType = await cmsService.deleteField(id, name);
     res.status(200).json(contentType);
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -68,7 +68,7 @@ const updateCollection = async (req, res) => {
     const collection = await cmsService.updateCollection(id, entry);
     res.status(200).json(collection);
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -78,7 +78,7 @@ const deleteCollection = async (req, res) => {
     await cmsService.deleteCollection(id);
     res.status(200).json({ message: 'Collection deleted successfully' });
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -89,7 +89,7 @@ const updateField = async (req, res) => {
     const contentType = await cmsService.updateField(id, oldName, newName);
     res.status(200).json(contentType);
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
