@@ -9,9 +9,9 @@ const authenticate = async (req, res, next) => {
     const { data } = await axios.get('http://localhost:8000/validate', {
       headers: { authorization },
     });
-    if (data) {
+    if (data.id) {
       const { id, role } = data;
-      req.user = { id, role };
+      req.user = { userId: id, role };
       return next();
     }
     throw new Error();
